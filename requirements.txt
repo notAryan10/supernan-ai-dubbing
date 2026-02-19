@@ -1,0 +1,12 @@
+numpy
+scipy
+tqdm
+pyyaml
+librosa
+soundfile
+openai-whisper
+TTS
+transformers
+sentencepiece
+accelerate
+ffmpeg-python
