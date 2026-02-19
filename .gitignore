@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+
+# Colab
+.ipynb_checkpoints/
+
+# Outputs
+outputs/
+temp/
+data/
+
+# Mac
+.DS_Store
+
+# Models
+*.pth
+*.ckpt
+*.bin
+*.safetensors
+
