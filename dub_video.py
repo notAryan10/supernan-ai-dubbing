@@ -15,12 +15,15 @@ def main():
     extract_audio(clip_video, audio_file)
 
     print("Transcribing audio...")
-    data = transcribe_audio(audio_file, transcript_file)
+    data = transcribe_audio(audio_file, transcript_file, translate=True)
 
     print(f"\nDetected Language: {data['language']}\n")
 
     for s in data["segments"]:
-        print(f"[{s['start']:.2f} - {s['end']:.2f}] {s['text']}")
+        print(f"[{s['start']:.2f} - {s['end']:.2f}]")
+        print(f"  {data['language'].upper()}: {s['text']}")
+        if "english" in s:
+            print(f"  EN: {s['english']}")
 
     print("\nTranscription complete!")
 
