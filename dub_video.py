@@ -7,6 +7,7 @@ def main():
     clip_video = "temp/clip.mp4"
     audio_file = "temp/audio.wav"
     transcript_file = "temp/transcript.json"
+    translated_transcript_file = "temp/transcript_english.json"
 
     print("Extracting 15 second clip...")
     extract_clip(input_video, clip_video)
@@ -15,17 +16,21 @@ def main():
     extract_audio(clip_video, audio_file)
 
     print("Transcribing audio...")
-    data = transcribe_audio(audio_file, transcript_file, translate=True)
+    data = transcribe_audio(audio_file, transcript_file)
 
     print(f"\nDetected Language: {data['language']}\n")
 
     for s in data["segments"]:
-        print(f"[{s['start']:.2f} - {s['end']:.2f}]")
-        print(f"  {data['language'].upper()}: {s['text']}")
-        if "english" in s:
-            print(f"  EN: {s['english']}")
+        print(f"[{s['start']:.2f} - {s['end']:.2f}] {s['text']}")
 
-    print("\nTranscription complete!")
+    print("\nTranscription (Original) complete!")
+
+    if data["language"] != "en":
+        print("\nTranslating audio to English...")
+        eng_data = transcribe_audio(audio_file, translated_transcript_file, task="translate")
+        for s in eng_data["segments"]:
+            print(f"[{s['start']:.2f} - {s['end']:.2f}] {s['text']}")
+        print("\nTranslation to English complete!")
 
 
 
