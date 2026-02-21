@@ -9,7 +9,7 @@ def run_ffmpeg(command: list):
 
 
 def extract_clip(input_video: str, output_video: str,
-                 start: str = "00:00:00", end: str = "00:00:15"):
+                 start: str = "00:00:30", end: str = "00:00:45"):
     Path(output_video).parent.mkdir(parents=True, exist_ok=True)
 
     command = [
@@ -31,8 +31,16 @@ def extract_audio(input_video: str, output_audio: str):
         "ffmpeg",
         "-y",
         "-i", input_video,
-        "-q:a", "0",
-        "-map", "a",
+
+        "-ac", "1",
+
+        "-ar", "16000",
+
+        "-af", "loudnorm",
+
+        "-af", "silenceremove=stop_periods=-1:stop_duration=0.5:stop_threshold=-35dB",
+
+        "-vn",
         output_audio
     ]
     run_ffmpeg(command)
