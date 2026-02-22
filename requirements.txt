@@ -10,3 +10,4 @@ transformers
 sentencepiece
 accelerate
 ffmpeg-python
+pydub

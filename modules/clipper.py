@@ -9,7 +9,7 @@ def run_ffmpeg(command: list):
 
 
 def extract_clip(input_video: str, output_video: str,
-                 start: str = "00:00:30", end: str = "00:00:45"):
+                 start: str = "00:00:45", end: str = "00:01:00"):
     Path(output_video).parent.mkdir(parents=True, exist_ok=True)
 
     command = [
