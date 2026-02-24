@@ -20,7 +20,7 @@ def speak_hindi(text, speaker_wav, output_wav):
         speaker_wav=speaker_wav,
         language="hi",
         file_path=output_wav,
-        temperature=0.15,         
+        temperature=0.3,         
         length_penalty=0.9,       
         repetition_penalty=2.5,
         top_k=50,

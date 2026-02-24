@@ -18,7 +18,7 @@ def transcribe_audio(audio_path: str, output_json: str):
 
         condition_on_previous_text=False,
 
-        temperature=0.0,
+        temperature=0.1,
 
         compression_ratio_threshold=3.0,
         logprob_threshold=-1.2,

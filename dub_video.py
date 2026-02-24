@@ -1,4 +1,4 @@
-from modules.clipper import extract_clip, extract_audio
+from modules.clipper import extract_clip, extract_audio, DEFAULT_START, DEFAULT_END
 from modules.transcriber import transcribe_audio
 from modules.hindi_translator import translate_to_hindi
 import json
@@ -10,11 +10,11 @@ def main():
     translated_transcript_file = "temp/transcript_english.json"
     hindi_transcript_file = "temp/transcript_hindi.json"
 
-    print("Extracting 15 second clip...")
-    extract_clip(input_video, clip_video)
+    print(f"Extracting silent {DEFAULT_START}-{DEFAULT_END} clip...")
+    extract_clip(input_video, clip_video, start=DEFAULT_START, end=DEFAULT_END)
 
-    print("Extracting audio...")
-    extract_audio(clip_video, audio_file)
+    print("Extracting audio from source...")
+    extract_audio(input_video, audio_file, start=DEFAULT_START, end=DEFAULT_END)
 
     print("Transcribing and translating audio to English directly...")
     data = transcribe_audio(audio_file, translated_transcript_file)
